@@ -9,6 +9,13 @@ var alreadyGuessed = [];
 var gameArray = [];
 var wins = 0;
 var isGameStarted = false;
+var word;
+var instructionsElement
+var winsElement
+var gameArrayElement
+var guessesRemainingElement
+var alreadyGuessedElement
+
 
 
 
@@ -30,7 +37,7 @@ console.log (welcomeMessageElement.innerHTML);
 
 function startGame() {
     removeWelcome();
-    let word = dictionary[Math.floor(Math.random()*dictionary.length)];
+    word = dictionary[Math.floor(Math.random()*dictionary.length)];
     console.log(word);
     isGameStarted = true;
     for (let i=0; i<word.length; i++) {
@@ -41,44 +48,54 @@ function startGame() {
 }
 
 function createHTML() {
-    let = container = document.getElementById("container")
+    let container = document.getElementById("container")
 
-    let instructionsElement = document.createElement("h1");
+    instructionsElement = document.createElement("h1");
     instructionsElement.setAttribute("class", "instructions");
     instructionsElement.textContent = "Guess the One Word Movie!";
     container.appendChild(instructionsElement);
 
-    let winsElement = document.createElement("h1");
+    winsElement = document.createElement("h1");
     winsElement.setAttribute("class", "wins");
     winsElement.textContent = "Wins: " + wins;
     container.appendChild(winsElement);
 
-    let gameArrayElement = document.createElement("h1");
+    gameArrayElement = document.createElement("h1");
     gameArrayElement.setAttribute("class", "game-array");
     gameArrayElement.textContent = gameArray.join(" ");
     container.appendChild(gameArrayElement);
 
-    let guessesRemainingElement = document.createElement("h1");
+    guessesRemainingElement = document.createElement("h1");
     guessesRemainingElement.setAttribute("class", "guesses-remaining");
     guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
     container.appendChild(guessesRemainingElement);
 
-    let alreadyGuessedElement = document.createElement("h1");
+    alreadyGuessedElement = document.createElement("h1");
     alreadyGuessedElement.setAttribute("class", "already-guessed");
     alreadyGuessedElement.textContent = "Letters guessed: " + alreadyGuessed;
     container.appendChild(alreadyGuessedElement);
 }
 
-function playGame() {
+function playGame(k) {
+    console.log (k);
 
+    for (let i=0; i<word.length; i++) {
+        if (k.toLowerCase() === word[i].toLowerCase()) {
+            gameArray[i] = k.toLowerCase();
+        }
+    };
+
+    gameArrayElement.textContent = gameArray.join(" ");
+
+    
 }
 
 document.onkeyup = function(event) {
     if (!isGameStarted) {
         startGame();
     }
-    else {
-        playGame();
+    else if (event.key.toLowerCase() != event.key.toUpperCase()) {
+        playGame(event.key);
     }
 }
 
