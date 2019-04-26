@@ -10,7 +10,7 @@ var gameArray = [];
 var wins = 0;
 var isGameStarted = false;
 var word;
-var instructionsElement
+var instructionsElement = document.getElementById("instructions");
 var winsElement
 var gameArrayElement
 var guessesRemainingElement
@@ -27,16 +27,11 @@ var alreadyGuessedElement
 
 
 
-function removeWelcome () {
-  document.getElementById('welcome-message').remove();
-}
 
 
-let welcomeMessageElement = document.getElementById("welcome-message");
-console.log (welcomeMessageElement.innerHTML);
+
 
 function startGame() {
-    removeWelcome();
     word = dictionary[Math.floor(Math.random()*dictionary.length)];
     console.log(word);
     isGameStarted = true;
@@ -50,8 +45,6 @@ function startGame() {
 function createHTML() {
     let container = document.getElementById("container")
 
-    instructionsElement = document.createElement("h1");
-    instructionsElement.setAttribute("class", "instructions");
     instructionsElement.textContent = "Guess the One Word Movie!";
     container.appendChild(instructionsElement);
 
@@ -107,6 +100,15 @@ function playGame(k) {
     guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
     gameArrayElement.textContent = gameArray.join(" ");
     alreadyGuessedElement.textContent = "Letters guessed: " + alreadyGuessed.join(" ");
+
+    if (guessesRemaining === 0) {
+        instructionsElement.textContent = "You Lose! Press any key to play again!";
+        startGame();
+    };
+
+    // for (let i=0; i<alreadyGuessed.length; i++)
+
+
 
     
 }
