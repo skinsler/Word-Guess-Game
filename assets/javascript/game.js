@@ -90,7 +90,7 @@ function playGame(k) {
         guessesRemaining--;
         guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
         alreadyGuessed.push(k.toLowerCase());
-        console.log(alreadyGuessed);
+
     }
 
     else {
@@ -99,11 +99,11 @@ function playGame(k) {
                 alreadyGuessed.push(k.toLowerCase());
                 console.log(alreadyGuessed);
                 guessesRemaining--;
+                break;
             }
         }
     }
     
-
     guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
     gameArrayElement.textContent = gameArray.join(" ");
     alreadyGuessedElement.textContent = "Letters guessed: " + alreadyGuessed.join(" ");
