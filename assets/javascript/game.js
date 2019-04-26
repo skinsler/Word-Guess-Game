@@ -26,14 +26,30 @@ function removeWelcome () {
 let welcomeMessageElement = document.getElementById("welcome-message");
 console.log (welcomeMessageElement.innerHTML);
 
+function startGame() {
+    removeWelcome();
+    let word = dictionary[Math.floor(Math.random()*dictionary.length)];
+    console.log(word);
+    isGameStarted = true;
+    createHTML();
+}
+
+function createHTML() {
+    let = container = document.getElementById("container")
+
+    let instructionsElement = document.createElement("h1");
+    instructionsElement.setAttribute("class", "instructions");
+    instructionsElement.textContent = "Guess the One Word Movie!";
+    container.appendChild(instructionsElement);
+
+}
 
 document.onkeyup = function(event) {
     if (!isGameStarted) {
-        removeWelcome();
-        var word = dictionary[Math.floor(Math.random()*dictionary.length)];
-        console.log(word);
-        isGameStarted = true;
+        startGame();
     }
-    console.log(event.key);
+    else {
+        playGame();
+    }
 }
 
