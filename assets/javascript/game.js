@@ -83,9 +83,30 @@ function playGame(k) {
         if (k.toLowerCase() === word[i].toLowerCase()) {
             gameArray[i] = k.toLowerCase();
         }
+
     };
 
+    if (alreadyGuessed.length === 0) {
+        guessesRemaining--;
+        guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
+        alreadyGuessed.push(k.toLowerCase());
+        console.log(alreadyGuessed);
+    }
+
+    else {
+        for (let i=0; i<alreadyGuessed.length; i++) {
+            if (k.toLowerCase() !== alreadyGuessed[i].toLowerCase()) {
+                alreadyGuessed.push(k.toLowerCase());
+                console.log(alreadyGuessed);
+                guessesRemaining--;
+            }
+        }
+    }
+    
+
+    guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
     gameArrayElement.textContent = gameArray.join(" ");
+    alreadyGuessedElement.textContent = "Letters guessed: " + alreadyGuessed.join(" ");
 
     
 }
