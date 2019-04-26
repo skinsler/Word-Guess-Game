@@ -4,10 +4,12 @@ const MAX_GUESSES = 8;
 
 //Global Variables
 var dictionary = ["Aladdin", "Inception", "Shrek", "Psycho", "Jaws"]
-var guessesRemaining;
+var guessesRemaining = MAX_GUESSES;
 var alreadyGuessed = [];
+var gameArray = [];
 var wins = 0;
 var isGameStarted = false;
+
 
 
 // var content = document.createElement("div");
@@ -31,6 +33,10 @@ function startGame() {
     let word = dictionary[Math.floor(Math.random()*dictionary.length)];
     console.log(word);
     isGameStarted = true;
+    for (let i=0; i<word.length; i++) {
+        gameArray[i] = "_";
+    };
+    
     createHTML();
 }
 
@@ -42,6 +48,20 @@ function createHTML() {
     instructionsElement.textContent = "Guess the One Word Movie!";
     container.appendChild(instructionsElement);
 
+    let winsElement = document.createElement("h1");
+    winsElement.setAttribute("class", "wins");
+    winsElement.textContent = "Wins: " + wins;
+    container.appendChild(winsElement);
+
+    let gameArrayElement = document.createElement("h1");
+    gameArrayElement.setAttribute("class", "wins");
+    gameArrayElement.textContent = gameArray.join(" ");
+    container.appendChild(gameArrayElement);
+
+    let guessesRemainingElement = document.createElement("h1");
+    guessesRemainingElement.setAttribute("class", "wins");
+    guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
+    container.appendChild(guessesRemainingElement);
 }
 
 document.onkeyup = function(event) {
