@@ -54,14 +54,23 @@ function createHTML() {
     container.appendChild(winsElement);
 
     let gameArrayElement = document.createElement("h1");
-    gameArrayElement.setAttribute("class", "wins");
+    gameArrayElement.setAttribute("class", "game-array");
     gameArrayElement.textContent = gameArray.join(" ");
     container.appendChild(gameArrayElement);
 
     let guessesRemainingElement = document.createElement("h1");
-    guessesRemainingElement.setAttribute("class", "wins");
+    guessesRemainingElement.setAttribute("class", "guesses-remaining");
     guessesRemainingElement.textContent = "Guesses Remaining: " + guessesRemaining;
     container.appendChild(guessesRemainingElement);
+
+    let alreadyGuessedElement = document.createElement("h1");
+    alreadyGuessedElement.setAttribute("class", "already-guessed");
+    alreadyGuessedElement.textContent = "Letters guessed: " + alreadyGuessed;
+    container.appendChild(alreadyGuessedElement);
+}
+
+function playGame() {
+
 }
 
 document.onkeyup = function(event) {
